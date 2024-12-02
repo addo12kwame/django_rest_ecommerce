@@ -1,7 +1,16 @@
 from django.urls import path
-
 from product.views import list_products, list_messages, ListProducts, ProductDetailedView, ListProductsMixins, \
-    DetailedProductMixins, ListProductsGenerics, DetailedProductsGenerics, SpecialProductsGenerics
+    DetailedProductMixins, ListProductsGenerics, DetailedProductsGenerics, SpecialProductsGenerics, ProductViewSet
+from rest_framework.routers import DefaultRouter
+
+
+# ViewSets needs routers
+router = DefaultRouter()
+router.register(
+    'productview',ProductViewSet,basename='product'
+)
+
+# Router has to be added to the urlpatterns
 
 urlpatterns  = [
     path('products/', list_products, name='products'),
@@ -15,4 +24,4 @@ urlpatterns  = [
     path('genspecial/<int:pk>/', SpecialProductsGenerics.as_view(),name='genericspecial'),
 
 
-]
+]+router.urls

@@ -1,4 +1,4 @@
-from rest_framework import status,mixins,generics
+from rest_framework import viewsets,status,mixins,generics
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -100,3 +100,6 @@ class SpecialProductsGenerics(generics.ListCreateAPIView,generics.RetrieveUpdate
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
