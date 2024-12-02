@@ -1,7 +1,3 @@
-from itertools import product
-
-from django.core.serializers import serialize
-from django.shortcuts import render
 from rest_framework import status,mixins,generics
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
@@ -91,3 +87,16 @@ class DetailedProductMixins(mixins.RetrieveModelMixin,
         return self.create(request, *args, **kwargs)
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class ListProductsGenerics(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class DetailedProductsGenerics(generics.RetrieveAPIView,generics.DestroyAPIView,generics.UpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class SpecialProductsGenerics(generics.ListCreateAPIView,generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
