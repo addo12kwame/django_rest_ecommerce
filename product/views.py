@@ -2,7 +2,7 @@ from itertools import product
 
 from django.core.serializers import serialize
 from django.shortcuts import render
-from rest_framework import status
+from rest_framework import status,mixins,generics
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -62,3 +62,32 @@ class ProductDetailedView(APIView):
         product_to_be_deleted = Product.objects.get(product_id=id)
         product_to_be_deleted.delete()
         return Response(status=status.HTTP_200_OK)
+
+
+class ListProductsMixins(mixins.ListModelMixin,generics.GenericAPIView):
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self,request,*args,**kwargs):
+        return self.list(request,*args,**kwargs)
+
+class DetailedProductMixins(mixins.RetrieveModelMixin,
+                            mixins.UpdateModelMixin,
+                            mixins.CreateModelMixin,
+                            mixins.DestroyModelMixin,
+                            generics.GenericAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
