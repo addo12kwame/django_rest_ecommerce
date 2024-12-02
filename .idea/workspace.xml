@@ -7,7 +7,7 @@
     <list default="true" id="47d6982a-0d62-4e21-9594-56f9bbd56a19" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mcommerce/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcommerce/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
