@@ -11,7 +11,6 @@ router.register(
 )
 
 # Router has to be added to the urlpatterns
-
 urlpatterns  = [
     path('products/', list_products, name='products'),
     path('messagelist/', list_messages, name='messagelist'),
